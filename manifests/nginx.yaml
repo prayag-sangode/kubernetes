@@ -1,53 +1,52 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: web
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-server
+  name: nginx
 spec:
   selector:
     matchLabels:
-      app: web
+      app: nginx
   template:
     metadata:
       labels:
-        app: web
+        app: nginx
     spec:
       containers:
-      - name: httpd
-        image: httpd:2.4.48-alpine3.14
+      - name: nginx
+        image: nginx
         ports:
         - containerPort: 80
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-server-service
+  name: nginx-service
 spec:
   selector:
-    app: web
+    app: nginx
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
+  type: ClusterIP
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: web-server-ingress
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
   ingressClassName: nginx
   rules:
-  - host: web.example.com
+  - host: nginx.example.com
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - pathType: Prefix
+        path: /
         backend:
           service:
-            name: web-server-service
+            name: nginx-service
             port:
               number: 80

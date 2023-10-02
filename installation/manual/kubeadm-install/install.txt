@@ -189,3 +189,76 @@ kubectl uncordon $MASTER
 kubectl uncordon $WORKER
 kubectl get nodes
 
+---
+
+examples 
+
+kubectl create deployment nginx --image=nginx --port=80
+kubectl expose deployment nginx
+kubectl create ingress nginx --class=nginx \
+  --rule nginx.example.com/=nginx:80
+
+kubectl create deployment httpd --image=httpd --port=80
+kubectl expose deployment httpd
+kubectl create ingress httpd --class=nginx \
+  --rule httpd.example.com/=httpd:80
+
+--
+
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server
+spec:
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: httpd
+        image: httpd:2.4.48-alpine3.14
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-server-service
+spec:
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-server-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: web.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-server-service
+            port:
+              number: 80
+
+
+
