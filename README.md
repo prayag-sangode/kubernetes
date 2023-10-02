@@ -1,2 +1,2 @@
 # kubernetes
-Kubernetes related stuff
+All Kubernetes related stuff
