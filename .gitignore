@@ -1,6 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
-
+/istio-install/
 # .tfstate files
 *.tfstate
 *.tfstate.*

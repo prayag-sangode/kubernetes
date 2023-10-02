@@ -145,7 +145,11 @@ ingress-nginx-controller             LoadBalancer   10.105.46.8    192.168.200.1
 ingress-nginx-controller-admission   ClusterIP      10.102.83.73   <none>            443/TCP                      4m30s
 [prayag@linux-bastion nginx-ingress]$
 
-
+---
+## Istio install
+curl -L https://istio.io/downloadIstio | sh -
+istio-1.19.0/bin/istioctl install
+kubectl get pods -n istio-system
 ---
 
 Upgrade -

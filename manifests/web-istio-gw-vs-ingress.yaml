@@ -1,0 +1,30 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: web-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "web.example.com"  # Change this to your desired host
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: web-virtual-service
+spec:
+  hosts:
+  - "web.example.com"  # Change this to your desired host
+  gateways:
+  - web-gateway
+  http:
+  - route:
+    - destination:
+        host: web-server-service.default.svc.cluster.local
+        port:
+          number: 80
