@@ -54,8 +54,8 @@ kubectl exec deployment.apps/external-app -- bash -c "curl -s http://backend.dev
 ### 4. Apply the Network Policy
 Restrict communication by applying the network policy:
 ```bash
-kubectl apply -f network-policy.yaml
-```
+kubectl apply -f default-deny-ingress.yaml
+kubectl apply -f backend-network-policy.yaml
 
 ### 5. Test Connectivity
 After applying the NetworkPolicy, verify the following:
