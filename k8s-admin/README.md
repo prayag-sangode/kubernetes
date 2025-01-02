@@ -32,5 +32,3 @@ kubectl create deployment nginx --image=nginx
 kubectl expose deployment nginx --type="ClusterIP" --port=80
 ```
 
-Node setup is complete and ready for use. 🎉
-```
