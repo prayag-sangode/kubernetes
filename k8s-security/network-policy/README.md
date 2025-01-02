@@ -56,6 +56,7 @@ Restrict communication by applying the network policy:
 ```bash
 kubectl apply -f default-deny-ingress.yaml
 kubectl apply -f backend-network-policy.yaml
+```
 
 ### 5. Test Connectivity
 After applying the NetworkPolicy, verify the following:
