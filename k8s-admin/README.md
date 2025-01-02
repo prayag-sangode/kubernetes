@@ -1,4 +1,3 @@
-```markdown
 # Kubernetes Node Setup Script
 
 This script automates the setup of a Kubernetes node with `containerd` as the container runtime, Calico as the CNI plugin, and initialization of a master node if applicable.
@@ -14,7 +13,7 @@ This script automates the setup of a Kubernetes node with `containerd` as the co
 ## Usage
 1. Run the script on your node:
    ```bash
-   bash setup.sh
+   bash k8s-ub24.sh
    ```
 2. If the node is a master node (e.g., hostname `k8s-node1.example.com`), it initializes the Kubernetes control plane.
 3. To add more nodes to the cluster, use the `kubeadm join` command output by the master node.
