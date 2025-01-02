@@ -37,8 +37,3 @@ kubectl create deployment nginx-deployment --image=nginx
 ```bash
 curl -k https://nginx.example.com
 ```
-
-## We can test from test pod as well
-```bash
-kubectl exec -it pod/nginx-deployment-c45d79c8-khmfm -- /bin/bash
-```
