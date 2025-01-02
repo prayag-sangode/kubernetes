@@ -1,5 +1,5 @@
   
-## Assuming K8s cluster is created. In this case vanilla k8s cluster is created.
+## Assuming K8s cluster is created. In this case vanilla k8s cluster is provisioned.
 
 ## Install Metallb if you are using vanilla k8s (created using kubeadm)
 ```bash
